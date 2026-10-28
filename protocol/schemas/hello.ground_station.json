@@ -1,0 +1,29 @@
+{
+  "$id": "drone-bridge/protocol/v1/hello.ground_station.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "go_home_timeout_s": {
+      "maximum": 60.0,
+      "minimum": 2.0,
+      "title": "Go Home Timeout S",
+      "type": "number"
+    },
+    "protocol_version": {
+      "title": "Protocol Version",
+      "type": "integer"
+    },
+    "type": {
+      "const": "hello",
+      "title": "Type",
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "protocol_version",
+    "go_home_timeout_s"
+  ],
+  "title": "HelloFromGroundStation",
+  "type": "object"
+}

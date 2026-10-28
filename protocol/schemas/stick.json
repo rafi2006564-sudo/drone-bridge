@@ -1,0 +1,51 @@
+{
+  "$id": "drone-bridge/protocol/v1/stick.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Mode 2 sticks. Positive = throttle up, yaw right, roll right, pitch forward.",
+  "properties": {
+    "lx": {
+      "maximum": 1.0,
+      "minimum": -1.0,
+      "title": "Lx",
+      "type": "number"
+    },
+    "ly": {
+      "maximum": 1.0,
+      "minimum": -1.0,
+      "title": "Ly",
+      "type": "number"
+    },
+    "rx": {
+      "maximum": 1.0,
+      "minimum": -1.0,
+      "title": "Rx",
+      "type": "number"
+    },
+    "ry": {
+      "maximum": 1.0,
+      "minimum": -1.0,
+      "title": "Ry",
+      "type": "number"
+    },
+    "t": {
+      "title": "T",
+      "type": "number"
+    },
+    "type": {
+      "const": "stick",
+      "title": "Type",
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "lx",
+    "ly",
+    "rx",
+    "ry",
+    "t"
+  ],
+  "title": "Stick",
+  "type": "object"
+}

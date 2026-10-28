@@ -1,0 +1,72 @@
+# Copy to config.yaml and edit. Every setting for the backend and the mock
+# bridge lives here. Values shown are the defaults.
+
+rc:
+  # IP of the RC Plus 2 on the local Wi-Fi (use a DHCP reservation).
+  # 127.0.0.1 talks to the mock bridge on this PC.
+  host: 127.0.0.1
+  port: 8765
+  connect_timeout_s: 3.0
+  reconnect_delay_s: 1.0
+  command_timeout_s: 5.0       # wait this long for an ack
+  upload_timeout_s: 30.0       # mission_upload ack
+  telemetry_stale_s: 1.0       # older telemetry blocks takeoff
+
+server:
+  # Keep 127.0.0.1 unless another PC must open the UI.
+  host: 127.0.0.1
+  port: 8000
+
+safety:
+  ui_heartbeat_timeout_s: 0.5  # max 0.5 (build plan, safety item 2)
+  heartbeat_hz: 10             # to the RC; min 10
+  stick_hz: 20                 # to the RC; min 20
+  ui_stick_timeout_s: 0.3      # UI stick input older than this -> zero
+  rc_go_home_timeout_s: 10     # RC app: no heartbeat this long while flying -> go home (2-60)
+  speed_scale_default: 0.3     # manual mode speed scale (safety item 7)
+  speed_scale_max: 1.0         # the UI slider cannot go above this
+  ui_deadband: 0.05
+
+limits:
+  # Set on the aircraft at every connect. Takeoff is blocked until both are acked.
+  height_limit_m: 120          # 20-1500
+  rth_altitude_m: 50           # must not exceed height_limit_m
+  # Mission validation:
+  max_distance_from_home_m: 500  # every waypoint within this of home
+  max_waypoints: 200           # check the SDK limit
+  min_mission_alt_m: 5         # no waypoint below this
+  max_mission_speed_ms: 15
+
+preflight:
+  # Takeoff is refused below these (safety item 6).
+  min_gps_sats: 10
+  min_battery_pct: 30
+
+video:
+  # Phase 3. Where the RC app pushes the stream, and the page the UI embeds.
+  push_url: null               # e.g. rtmp://192.168.1.10:1935/drone
+  player_url: null             # e.g. http://127.0.0.1:8889/drone
+
+map:
+  # Needs internet on the PC. Point at a local tile server for offline use.
+  tile_url: https://tile.openstreetmap.org/{z}/{x}/{y}.png
+  tile_attribution: "&copy; OpenStreetMap contributors"
+
+simulator:
+  # Start position for simulator_start and for the mock bridge.
+  lat: 47.397742
+  lon: 8.545594
+
+logging:
+  dir: logs
+
+storage:
+  dir: data                    # saved missions and schedules
+
+schedule:
+  # Scheduled sorties take off by themselves (see docs/build-plan-amendments.md).
+  launch_window_s: 60          # launch up to this late, else "missed"; never later
+  warn_before_s: 60            # countdown and Cancel button in the UI
+  min_lead_s: 60               # a sortie must be at least this far in the future
+  max_horizon_days: 7          # and at most this far
+  takeoff_timeout_s: 30        # takeoff must reach a stable hover within this

@@ -1,0 +1,28 @@
+{
+  "$id": "drone-bridge/protocol/v1/heartbeat.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "seq": {
+      "minimum": 0,
+      "title": "Seq",
+      "type": "integer"
+    },
+    "t": {
+      "title": "T",
+      "type": "number"
+    },
+    "type": {
+      "const": "heartbeat",
+      "title": "Type",
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "seq",
+    "t"
+  ],
+  "title": "Heartbeat",
+  "type": "object"
+}

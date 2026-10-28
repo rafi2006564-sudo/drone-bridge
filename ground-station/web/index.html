@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ground Station</title>
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Ground Station</h1>
+    <span class="pill" id="pill-backend">backend</span>
+    <span class="pill" id="pill-rc">RC</span>
+    <span class="pill" id="pill-telemetry">telemetry</span>
+    <span class="pill" id="pill-limits">limits</span>
+    <span class="pill" id="pill-preflight" title="">pre-flight</span>
+    <span id="aircraft-info"></span>
+  </header>
+
+  <div id="banner" hidden></div>
+  <div id="sortie-banner" hidden>
+    <span id="sortie-banner-text"></span>
+    <button id="sortie-banner-cancel">Cancel sortie</button>
+  </div>
+
+  <main>
+    <section id="map-wrap">
+      <div id="map"></div>
+      <label id="follow-wrap"><input type="checkbox" id="follow" checked> follow aircraft</label>
+    </section>
+
+    <aside>
+      <section class="panel" id="video-panel">
+        <h2>Video</h2>
+        <div id="video"><p class="muted">No video configured (Phase 3).</p></div>
+      </section>
+
+      <section class="panel">
+        <h2>Flight</h2>
+        <div class="buttons">
+          <button data-cmd="takeoff" class="go">Take off</button>
+          <button data-cmd="land">Land</button>
+          <button data-cmd="go_home" class="warn">Return home</button>
+          <button data-cmd="cancel_go_home">Cancel RTH</button>
+        </div>
+        <div class="buttons">
+          <button data-cmd="enable_virtual_stick" class="go" id="btn-vs-on">Enable virtual stick</button>
+          <button data-cmd="disable_virtual_stick" id="btn-vs-off">Disable virtual stick</button>
+        </div>
+        <label class="row">Speed scale
+          <input type="range" id="speed" min="0.05" max="1" step="0.05" value="0.3">
+          <output id="speed-out">30%</output>
+        </label>
+        <div class="sticks">
+          <div class="stick"><div class="dot" id="stick-left"></div><span>yaw / throttle</span></div>
+          <div class="stick"><div class="dot" id="stick-right"></div><span>roll / pitch</span></div>
+        </div>
+        <p class="keys" id="keys-hint">Keys (virtual stick on): <kbd>W</kbd><kbd>S</kbd> up/down, <kbd>A</kbd><kbd>D</kbd> yaw,
+          arrows move, <kbd>Space</kbd> release all. Keep this tab in front: a hidden tab stops heartbeats and the aircraft hovers.</p>
+      </section>
+
+      <section class="panel" id="missions-panel">
+        <h2>Missions</h2>
+        <div class="row">
+          <select id="mission-select"><option value="">(no saved missions)</option></select>
+        </div>
+        <p class="report" id="mission-summary"></p>
+        <div class="buttons">
+          <button id="btn-mission-new" class="local">New</button>
+          <button id="btn-mission-edit" class="local">Edit</button>
+          <button id="btn-mission-delete" class="local">Delete</button>
+        </div>
+        <div class="buttons">
+          <button id="btn-mission-upload">Upload</button>
+          <button data-cmd="mission_start" class="go">Start</button>
+          <button data-cmd="mission_pause">Pause</button>
+          <button data-cmd="mission_resume">Resume</button>
+          <button data-cmd="mission_stop" class="warn">Stop</button>
+        </div>
+
+        <details id="survey">
+          <summary>Survey an area</summary>
+          <p class="keys">Press Draw area and click the map to place corners. Drag a corner to move it,
+            right-click it to remove it. Then Generate: the result opens in the editor to review and save.</p>
+          <div class="buttons">
+            <button id="btn-survey-draw" class="local">Draw area</button>
+            <button id="btn-survey-clear" class="local">Clear</button>
+          </div>
+          <div class="row">
+            <label>Alt <input type="number" id="sv-alt" value="40" min="0" max="1500" step="1"> m</label>
+            <label>Lines every <input type="number" id="sv-spacing" value="20" min="1" max="500" step="1"> m</label>
+          </div>
+          <div class="row">
+            <label>Direction <input type="number" id="sv-angle" min="0" max="179" step="1" placeholder="auto"> °</label>
+            <label>Photo every <input type="number" id="sv-photo" min="1" max="500" step="1" placeholder="none"> m</label>
+          </div>
+          <div class="row">
+            <label>Speed <input type="number" id="sv-speed" value="8" min="0.5" max="15" step="0.5"> m/s</label>
+          </div>
+          <p class="report" id="sv-report"></p>
+          <div class="buttons">
+            <button id="btn-survey-generate" class="go local">Generate mission</button>
+          </div>
+        </details>
+
+        <div id="editor" hidden>
+          <h2>Editing: click the map to add waypoints, drag to move</h2>
+          <label class="row">Name <input type="text" id="ed-name" maxlength="80"></label>
+          <div class="row">
+            <label>Speed <input type="number" id="ed-speed" min="0.5" max="15" step="0.5" value="5"> m/s</label>
+            <label>New alt <input type="number" id="ed-alt" min="0" max="1500" step="1" value="30"> m</label>
+          </div>
+          <label class="row">At the end
+            <select id="ed-finish">
+              <option value="go_home">return home</option>
+              <option value="hover">hover</option>
+              <option value="land">land</option>
+              <option value="first_waypoint">go to first waypoint</option>
+            </select>
+          </label>
+          <table id="ed-waypoints">
+            <thead><tr><th>#</th><th>alt m</th><th>speed</th><th>photo</th><th>gimbal°</th><th></th></tr></thead>
+            <tbody></tbody>
+          </table>
+          <p class="report" id="ed-report"></p>
+          <div class="buttons">
+            <button id="btn-ed-save" class="go local">Save</button>
+            <button id="btn-ed-cancel" class="local">Cancel</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="sorties-panel">
+        <h2>Scheduled sorties</h2>
+        <p class="keys">At the set time the aircraft takes off by itself and flies the selected mission, if the
+          pre-flight checks pass and this page is open. The pilot must be at the RC.</p>
+        <div class="row">
+          <input type="datetime-local" id="sortie-time">
+          <button id="btn-sortie-create" class="warn local">Schedule</button>
+        </div>
+        <ul id="sorties"></ul>
+      </section>
+
+      <section class="panel">
+        <h2>Gimbal &amp; camera</h2>
+        <div class="buttons">
+          <button data-cmd="gimbal_set" data-args='{"pitch": -90}'>Gimbal down</button>
+          <button data-cmd="gimbal_reset">Gimbal reset</button>
+          <button data-cmd="camera_photo">Photo</button>
+          <button id="btn-record">Record</button>
+        </div>
+        <div class="buttons">
+          <button id="btn-lens">Lens: wide</button>
+          <label class="row" id="zoom-row">Zoom
+            <input type="number" id="zoom" min="1" max="200" step="0.5" value="2">
+            <button id="btn-zoom">Set</button>
+          </label>
+        </div>
+        <p class="keys">Hold <kbd>R</kbd>/<kbd>F</kbd> to tilt the gimbal.</p>
+      </section>
+
+      <section class="panel">
+        <h2>Telemetry</h2>
+        <dl id="telemetry"></dl>
+        <ul id="warnings"></ul>
+      </section>
+
+      <section class="panel">
+        <h2>Simulator</h2>
+        <div class="buttons">
+          <button data-cmd="simulator_start">Start simulator</button>
+          <button data-cmd="simulator_stop">Stop simulator</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Events</h2>
+        <ol id="events"></ol>
+      </section>
+    </aside>
+  </main>
+
+  <dialog id="confirm">
+    <form method="dialog">
+      <p id="confirm-text"></p>
+      <div class="buttons">
+        <button value="cancel">Cancel</button>
+        <button value="ok" class="go" id="confirm-ok">Confirm</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

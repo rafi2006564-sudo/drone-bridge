@@ -1,0 +1,1187 @@
+{
+  "$defs": {
+    "CameraLensArgs": {
+      "additionalProperties": false,
+      "properties": {
+        "lens": {
+          "enum": [
+            "wide",
+            "zoom"
+          ],
+          "title": "Lens",
+          "type": "string"
+        }
+      },
+      "required": [
+        "lens"
+      ],
+      "title": "CameraLensArgs",
+      "type": "object"
+    },
+    "CameraZoomArgs": {
+      "additionalProperties": false,
+      "properties": {
+        "ratio": {
+          "maximum": 200.0,
+          "minimum": 1.0,
+          "title": "Ratio",
+          "type": "number"
+        }
+      },
+      "required": [
+        "ratio"
+      ],
+      "title": "CameraZoomArgs",
+      "type": "object"
+    },
+    "Command_camera_lens": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/CameraLensArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "camera_lens",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_camera_lens",
+      "type": "object"
+    },
+    "Command_camera_photo": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/NoArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "camera_photo",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_camera_photo",
+      "type": "object"
+    },
+    "Command_camera_record_start": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/NoArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "camera_record_start",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_camera_record_start",
+      "type": "object"
+    },
+    "Command_camera_record_stop": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/NoArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "camera_record_stop",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_camera_record_stop",
+      "type": "object"
+    },
+    "Command_camera_zoom": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/CameraZoomArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "camera_zoom",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_camera_zoom",
+      "type": "object"
+    },
+    "Command_cancel_go_home": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/NoArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "cancel_go_home",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_cancel_go_home",
+      "type": "object"
+    },
+    "Command_disable_virtual_stick": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/NoArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "disable_virtual_stick",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_disable_virtual_stick",
+      "type": "object"
+    },
+    "Command_enable_virtual_stick": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/NoArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "enable_virtual_stick",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_enable_virtual_stick",
+      "type": "object"
+    },
+    "Command_gimbal_reset": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/NoArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "gimbal_reset",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_gimbal_reset",
+      "type": "object"
+    },
+    "Command_gimbal_rotate": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/GimbalRotateArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "gimbal_rotate",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_gimbal_rotate",
+      "type": "object"
+    },
+    "Command_gimbal_set": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/GimbalSetArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "gimbal_set",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_gimbal_set",
+      "type": "object"
+    },
+    "Command_go_home": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/NoArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "go_home",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_go_home",
+      "type": "object"
+    },
+    "Command_land": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/NoArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "land",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_land",
+      "type": "object"
+    },
+    "Command_mission_pause": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/NoArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "mission_pause",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_mission_pause",
+      "type": "object"
+    },
+    "Command_mission_resume": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/NoArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "mission_resume",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_mission_resume",
+      "type": "object"
+    },
+    "Command_mission_start": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/NoArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "mission_start",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_mission_start",
+      "type": "object"
+    },
+    "Command_mission_stop": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/NoArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "mission_stop",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_mission_stop",
+      "type": "object"
+    },
+    "Command_mission_upload": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/MissionUploadArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "mission_upload",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_mission_upload",
+      "type": "object"
+    },
+    "Command_set_height_limit": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/HeightArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "set_height_limit",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_set_height_limit",
+      "type": "object"
+    },
+    "Command_set_rth_altitude": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/HeightArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "set_rth_altitude",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_set_rth_altitude",
+      "type": "object"
+    },
+    "Command_simulator_start": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/SimulatorStartArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "simulator_start",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_simulator_start",
+      "type": "object"
+    },
+    "Command_simulator_stop": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/NoArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "simulator_stop",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_simulator_stop",
+      "type": "object"
+    },
+    "Command_takeoff": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/NoArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "takeoff",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_takeoff",
+      "type": "object"
+    },
+    "Command_video_start": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/VideoStartArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "video_start",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_video_start",
+      "type": "object"
+    },
+    "Command_video_stop": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "$ref": "#/$defs/NoArgs"
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "const": "video_stop",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "const": "command",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "id",
+        "args"
+      ],
+      "title": "Command_video_stop",
+      "type": "object"
+    },
+    "GimbalPitchAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "const": "gimbal_pitch",
+          "title": "Action",
+          "type": "string"
+        },
+        "pitch": {
+          "maximum": 35.0,
+          "minimum": -90.0,
+          "title": "Pitch",
+          "type": "number"
+        }
+      },
+      "required": [
+        "action",
+        "pitch"
+      ],
+      "title": "GimbalPitchAction",
+      "type": "object"
+    },
+    "GimbalRotateArgs": {
+      "additionalProperties": false,
+      "properties": {
+        "pitch_rate": {
+          "maximum": 90.0,
+          "minimum": -90.0,
+          "title": "Pitch Rate",
+          "type": "number"
+        },
+        "yaw_rate": {
+          "maximum": 90.0,
+          "minimum": -90.0,
+          "title": "Yaw Rate",
+          "type": "number"
+        }
+      },
+      "required": [
+        "pitch_rate",
+        "yaw_rate"
+      ],
+      "title": "GimbalRotateArgs",
+      "type": "object"
+    },
+    "GimbalSetArgs": {
+      "additionalProperties": false,
+      "properties": {
+        "pitch": {
+          "maximum": 35.0,
+          "minimum": -90.0,
+          "title": "Pitch",
+          "type": "number"
+        }
+      },
+      "required": [
+        "pitch"
+      ],
+      "title": "GimbalSetArgs",
+      "type": "object"
+    },
+    "HeightArgs": {
+      "additionalProperties": false,
+      "properties": {
+        "m": {
+          "exclusiveMinimum": 0.0,
+          "maximum": 1500.0,
+          "title": "M",
+          "type": "number"
+        }
+      },
+      "required": [
+        "m"
+      ],
+      "title": "HeightArgs",
+      "type": "object"
+    },
+    "MissionUploadArgs": {
+      "additionalProperties": false,
+      "properties": {
+        "finish_action": {
+          "enum": [
+            "go_home",
+            "hover",
+            "land",
+            "first_waypoint"
+          ],
+          "title": "Finish Action",
+          "type": "string"
+        },
+        "speed": {
+          "exclusiveMinimum": 0.0,
+          "maximum": 25.0,
+          "title": "Speed",
+          "type": "number"
+        },
+        "waypoints": {
+          "items": {
+            "$ref": "#/$defs/Waypoint"
+          },
+          "minItems": 2,
+          "title": "Waypoints",
+          "type": "array"
+        }
+      },
+      "required": [
+        "waypoints",
+        "speed",
+        "finish_action"
+      ],
+      "title": "MissionUploadArgs",
+      "type": "object"
+    },
+    "NoArgs": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "title": "NoArgs",
+      "type": "object"
+    },
+    "PhotoAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "const": "photo",
+          "title": "Action",
+          "type": "string"
+        }
+      },
+      "required": [
+        "action"
+      ],
+      "title": "PhotoAction",
+      "type": "object"
+    },
+    "SimulatorStartArgs": {
+      "additionalProperties": false,
+      "properties": {
+        "lat": {
+          "maximum": 90.0,
+          "minimum": -90.0,
+          "title": "Lat",
+          "type": "number"
+        },
+        "lon": {
+          "maximum": 180.0,
+          "minimum": -180.0,
+          "title": "Lon",
+          "type": "number"
+        }
+      },
+      "required": [
+        "lat",
+        "lon"
+      ],
+      "title": "SimulatorStartArgs",
+      "type": "object"
+    },
+    "VideoStartArgs": {
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^(rtmp|rtsp|srt)://",
+          "title": "Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "title": "VideoStartArgs",
+      "type": "object"
+    },
+    "Waypoint": {
+      "additionalProperties": false,
+      "properties": {
+        "actions": {
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "gimbal_pitch": "#/$defs/GimbalPitchAction",
+                "photo": "#/$defs/PhotoAction"
+              },
+              "propertyName": "action"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/PhotoAction"
+              },
+              {
+                "$ref": "#/$defs/GimbalPitchAction"
+              }
+            ]
+          },
+          "title": "Actions",
+          "type": "array"
+        },
+        "alt": {
+          "maximum": 1500.0,
+          "minimum": 0.0,
+          "title": "Alt",
+          "type": "number"
+        },
+        "lat": {
+          "maximum": 90.0,
+          "minimum": -90.0,
+          "title": "Lat",
+          "type": "number"
+        },
+        "lon": {
+          "maximum": 180.0,
+          "minimum": -180.0,
+          "title": "Lon",
+          "type": "number"
+        },
+        "speed": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "maximum": 25.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Speed"
+        }
+      },
+      "required": [
+        "lat",
+        "lon",
+        "alt"
+      ],
+      "title": "Waypoint",
+      "type": "object"
+    }
+  },
+  "$id": "drone-bridge/protocol/v1/command.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "discriminator": {
+    "mapping": {
+      "camera_lens": "#/$defs/Command_camera_lens",
+      "camera_photo": "#/$defs/Command_camera_photo",
+      "camera_record_start": "#/$defs/Command_camera_record_start",
+      "camera_record_stop": "#/$defs/Command_camera_record_stop",
+      "camera_zoom": "#/$defs/Command_camera_zoom",
+      "cancel_go_home": "#/$defs/Command_cancel_go_home",
+      "disable_virtual_stick": "#/$defs/Command_disable_virtual_stick",
+      "enable_virtual_stick": "#/$defs/Command_enable_virtual_stick",
+      "gimbal_reset": "#/$defs/Command_gimbal_reset",
+      "gimbal_rotate": "#/$defs/Command_gimbal_rotate",
+      "gimbal_set": "#/$defs/Command_gimbal_set",
+      "go_home": "#/$defs/Command_go_home",
+      "land": "#/$defs/Command_land",
+      "mission_pause": "#/$defs/Command_mission_pause",
+      "mission_resume": "#/$defs/Command_mission_resume",
+      "mission_start": "#/$defs/Command_mission_start",
+      "mission_stop": "#/$defs/Command_mission_stop",
+      "mission_upload": "#/$defs/Command_mission_upload",
+      "set_height_limit": "#/$defs/Command_set_height_limit",
+      "set_rth_altitude": "#/$defs/Command_set_rth_altitude",
+      "simulator_start": "#/$defs/Command_simulator_start",
+      "simulator_stop": "#/$defs/Command_simulator_stop",
+      "takeoff": "#/$defs/Command_takeoff",
+      "video_start": "#/$defs/Command_video_start",
+      "video_stop": "#/$defs/Command_video_stop"
+    },
+    "propertyName": "name"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/Command_enable_virtual_stick"
+    },
+    {
+      "$ref": "#/$defs/Command_disable_virtual_stick"
+    },
+    {
+      "$ref": "#/$defs/Command_takeoff"
+    },
+    {
+      "$ref": "#/$defs/Command_land"
+    },
+    {
+      "$ref": "#/$defs/Command_go_home"
+    },
+    {
+      "$ref": "#/$defs/Command_cancel_go_home"
+    },
+    {
+      "$ref": "#/$defs/Command_gimbal_rotate"
+    },
+    {
+      "$ref": "#/$defs/Command_gimbal_set"
+    },
+    {
+      "$ref": "#/$defs/Command_gimbal_reset"
+    },
+    {
+      "$ref": "#/$defs/Command_camera_photo"
+    },
+    {
+      "$ref": "#/$defs/Command_camera_record_start"
+    },
+    {
+      "$ref": "#/$defs/Command_camera_record_stop"
+    },
+    {
+      "$ref": "#/$defs/Command_camera_zoom"
+    },
+    {
+      "$ref": "#/$defs/Command_camera_lens"
+    },
+    {
+      "$ref": "#/$defs/Command_mission_upload"
+    },
+    {
+      "$ref": "#/$defs/Command_mission_start"
+    },
+    {
+      "$ref": "#/$defs/Command_mission_pause"
+    },
+    {
+      "$ref": "#/$defs/Command_mission_resume"
+    },
+    {
+      "$ref": "#/$defs/Command_mission_stop"
+    },
+    {
+      "$ref": "#/$defs/Command_set_height_limit"
+    },
+    {
+      "$ref": "#/$defs/Command_set_rth_altitude"
+    },
+    {
+      "$ref": "#/$defs/Command_simulator_start"
+    },
+    {
+      "$ref": "#/$defs/Command_simulator_stop"
+    },
+    {
+      "$ref": "#/$defs/Command_video_start"
+    },
+    {
+      "$ref": "#/$defs/Command_video_stop"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "$id": "drone-bridge/protocol/v1/hello.bridge.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "aircraft_firmware": {
+      "title": "Aircraft Firmware",
+      "type": "string"
+    },
+    "aircraft_model": {
+      "title": "Aircraft Model",
+      "type": "string"
+    },
+    "msdk_version": {
+      "title": "Msdk Version",
+      "type": "string"
+    },
+    "protocol_version": {
+      "title": "Protocol Version",
+      "type": "integer"
+    },
+    "rc_firmware": {
+      "title": "Rc Firmware",
+      "type": "string"
+    },
+    "type": {
+      "const": "hello",
+      "title": "Type",
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "protocol_version",
+    "msdk_version",
+    "aircraft_model",
+    "aircraft_firmware",
+    "rc_firmware"
+  ],
+  "title": "HelloFromBridge",
+  "type": "object"
+}

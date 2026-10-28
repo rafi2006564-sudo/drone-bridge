@@ -1,0 +1,56 @@
+{
+  "$id": "drone-bridge/protocol/v1/event.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "code": {
+      "pattern": "^[a-z0-9_]+$",
+      "title": "Code",
+      "type": "string"
+    },
+    "data": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Data"
+    },
+    "level": {
+      "enum": [
+        "info",
+        "warning",
+        "critical"
+      ],
+      "title": "Level",
+      "type": "string"
+    },
+    "message": {
+      "title": "Message",
+      "type": "string"
+    },
+    "t": {
+      "title": "T",
+      "type": "number"
+    },
+    "type": {
+      "const": "event",
+      "title": "Type",
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "level",
+    "code",
+    "message",
+    "t"
+  ],
+  "title": "Event",
+  "type": "object"
+}

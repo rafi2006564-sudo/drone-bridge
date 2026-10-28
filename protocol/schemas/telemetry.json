@@ -1,0 +1,376 @@
+{
+  "$defs": {
+    "ActiveWarning": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "pattern": "^[a-z0-9_]+$",
+          "title": "Code",
+          "type": "string"
+        },
+        "level": {
+          "enum": [
+            "warning",
+            "critical"
+          ],
+          "title": "Level",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "level",
+        "message"
+      ],
+      "title": "ActiveWarning",
+      "type": "object"
+    }
+  },
+  "$id": "drone-bridge/protocol/v1/telemetry.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "active_warnings": {
+      "items": {
+        "$ref": "#/$defs/ActiveWarning"
+      },
+      "title": "Active Warnings",
+      "type": "array"
+    },
+    "alt_rel": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Alt Rel"
+    },
+    "battery_pct": {
+      "anyOf": [
+        {
+          "maximum": 100,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Battery Pct"
+    },
+    "camera_lens": {
+      "anyOf": [
+        {
+          "enum": [
+            "wide",
+            "zoom"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Camera Lens"
+    },
+    "camera_recording": {
+      "title": "Camera Recording",
+      "type": "boolean"
+    },
+    "flight_mode": {
+      "title": "Flight Mode",
+      "type": "string"
+    },
+    "gimbal_pitch": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Gimbal Pitch"
+    },
+    "gimbal_yaw": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Gimbal Yaw"
+    },
+    "gps_level": {
+      "maximum": 10,
+      "minimum": 0,
+      "title": "Gps Level",
+      "type": "integer"
+    },
+    "gps_sats": {
+      "minimum": 0,
+      "title": "Gps Sats",
+      "type": "integer"
+    },
+    "heading": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 360.0,
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Heading"
+    },
+    "home_lat": {
+      "anyOf": [
+        {
+          "maximum": 90.0,
+          "minimum": -90.0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Home Lat"
+    },
+    "home_lon": {
+      "anyOf": [
+        {
+          "maximum": 180.0,
+          "minimum": -180.0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Home Lon"
+    },
+    "home_set": {
+      "title": "Home Set",
+      "type": "boolean"
+    },
+    "is_flying": {
+      "title": "Is Flying",
+      "type": "boolean"
+    },
+    "lat": {
+      "anyOf": [
+        {
+          "maximum": 90.0,
+          "minimum": -90.0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Lat"
+    },
+    "lon": {
+      "anyOf": [
+        {
+          "maximum": 180.0,
+          "minimum": -180.0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Lon"
+    },
+    "mission_state": {
+      "enum": [
+        "idle",
+        "uploading",
+        "ready",
+        "executing",
+        "paused",
+        "unknown"
+      ],
+      "title": "Mission State",
+      "type": "string"
+    },
+    "motors_on": {
+      "title": "Motors On",
+      "type": "boolean"
+    },
+    "pitch": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Pitch"
+    },
+    "rc_link_quality": {
+      "anyOf": [
+        {
+          "maximum": 100,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Rc Link Quality"
+    },
+    "roll": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Roll"
+    },
+    "seq": {
+      "minimum": 0,
+      "title": "Seq",
+      "type": "integer"
+    },
+    "simulator_active": {
+      "title": "Simulator Active",
+      "type": "boolean"
+    },
+    "t": {
+      "title": "T",
+      "type": "number"
+    },
+    "type": {
+      "const": "telemetry",
+      "title": "Type",
+      "type": "string"
+    },
+    "vel_d": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Vel D"
+    },
+    "vel_e": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Vel E"
+    },
+    "vel_n": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Vel N"
+    },
+    "video_link_quality": {
+      "anyOf": [
+        {
+          "maximum": 100,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Video Link Quality"
+    },
+    "virtual_stick_enabled": {
+      "title": "Virtual Stick Enabled",
+      "type": "boolean"
+    },
+    "yaw": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Yaw"
+    },
+    "zoom_ratio": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Zoom Ratio"
+    }
+  },
+  "required": [
+    "type",
+    "seq",
+    "t",
+    "lat",
+    "lon",
+    "alt_rel",
+    "heading",
+    "vel_n",
+    "vel_e",
+    "vel_d",
+    "pitch",
+    "roll",
+    "yaw",
+    "battery_pct",
+    "gps_sats",
+    "gps_level",
+    "home_lat",
+    "home_lon",
+    "home_set",
+    "flight_mode",
+    "motors_on",
+    "is_flying",
+    "virtual_stick_enabled",
+    "simulator_active",
+    "gimbal_pitch",
+    "gimbal_yaw",
+    "rc_link_quality",
+    "video_link_quality",
+    "mission_state",
+    "active_warnings",
+    "camera_recording",
+    "camera_lens",
+    "zoom_ratio"
+  ],
+  "title": "Telemetry",
+  "type": "object"
+}

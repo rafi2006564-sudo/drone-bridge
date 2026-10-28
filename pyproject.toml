@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "drone-bridge"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "websockets>=14",
+    "pydantic>=2.6",
+    "PyYAML",
+]
+
+[project.optional-dependencies]
+# httpx is required by fastapi.testclient only.
+test = ["pytest", "httpx"]
+
+[tool.setuptools]
+packages = ["drone_protocol", "ground_station", "mock_bridge"]
+
+[tool.setuptools.package-dir]
+drone_protocol = "protocol/drone_protocol"
+ground_station = "ground-station/backend"
+mock_bridge = "mock-bridge/mock_bridge"
+
+[tool.pytest.ini_options]
+testpaths = ["ground-station/tests"]
